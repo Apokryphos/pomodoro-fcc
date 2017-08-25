@@ -1,0 +1,20 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "Pomodoro timer for freeCodeCamp project.",
+  "main": "index.js",
+  "scripts": {
+    "build-client": "webpack ./src/index.js ./dist/bundle.js && npm run copy-client",
+    "copy-client": "cp -r ./src/assets/* ./dist",
+    "test": "tape test/tests.js | faucet"
+  },
+  "author": "Tony Slavotinek",
+  "license": "ISC",
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "moment": "^2.18.1"
+  }
+}
