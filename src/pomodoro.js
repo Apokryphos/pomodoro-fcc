@@ -168,7 +168,15 @@ Pomodoro.prototype.getBreakDuration = function() {
 
 Pomodoro.prototype.start = function() {
   if (!moment.isDuration(this.taskDuration)) {
-    throw new Error('Current duration is invalid.');
+    throw new Error('Task duration is invalid.');
+  }
+
+  if (!moment.isDuration(this.shortBreakDuration)) {
+    throw new Error('Short break duration is invalid.');
+  }
+
+  if (!moment.isDuration(this.longBreakDuration)) {
+    throw new Error('Long break duration is invalid.');
   }
 
   if (this.taskCount <= this.breakCount) {
