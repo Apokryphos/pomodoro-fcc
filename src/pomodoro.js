@@ -161,7 +161,7 @@ Pomodoro.prototype.isTaskActive = function() {
 
 Pomodoro.prototype.getBreakDuration = function() {
   return (
-    (this.breakCount > 0 && (this.breakCount % this.longBreakInterval) === 0) ?
+    (this.taskCount > 0 && (this.taskCount % this.longBreakInterval) === 0) ?
     this.longBreakDuration :
     this.shortBreakDuration);
 };

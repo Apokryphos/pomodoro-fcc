@@ -138,8 +138,8 @@ test('Pomodoro break interval changes', (t) => {
   const onTick = () => {
     if (pomodoro.isBreakActive()) {
       const inLongBreak =
-          pomodoro.breakCount > 0 &&
-          pomodoro.breakCount % pomodoro.longBreakInterval === 0;
+          pomodoro.taskCount > 0 &&
+          pomodoro.taskCount % pomodoro.longBreakInterval === 0;
 
       if (inLongBreak) {
         t.deepEqual(
