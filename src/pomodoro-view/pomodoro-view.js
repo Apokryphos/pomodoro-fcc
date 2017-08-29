@@ -1,4 +1,5 @@
 const Countdown = require('./countdown.js');
+const ConfigButton = require('./config-button.js');
 const Sliders = require('./sliders.js');
 const StartButton = require('./start-button.js');
 
@@ -12,6 +13,10 @@ function PomodoroView(pomodoro) {
     document.getElementById('startButton'),
     document.getElementById('startIcon'),
     document.getElementById('stopIcon'));
+
+  this.configButton = new ConfigButton(
+    document.getElementById('configButton'),
+    document.getElementById('configContainer'));
 
   this.longBreakIntervalSlider = Sliders.createLongBreakIntervalSlider(this.pomodoro);
   this.taskDurationSlider = Sliders.createTaskDurationSlider(this.pomodoro);
