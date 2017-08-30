@@ -32,14 +32,14 @@ Countdown.prototype.update = function(pomodoro) {
 
   if (pomodoro.isBreakActive()) {
     this.element.classList.add('breakActive');
-    this.element.classList.remove('inActive');
-    this.element.classList.remove('breakActive');
+    this.element.classList.remove('inactive');
+    this.element.classList.remove('taskActive');
   } else if (pomodoro.isTaskActive()) {
     this.element.classList.add('taskActive');
-    this.element.classList.remove('inActive');
+    this.element.classList.remove('inactive');
     this.element.classList.remove('breakActive');
   } else {
-    this.element.classList.add('inActive');
+    this.element.classList.add('inactive');
     this.element.classList.remove('taskActive');
     this.element.classList.remove('breakActive');
   }

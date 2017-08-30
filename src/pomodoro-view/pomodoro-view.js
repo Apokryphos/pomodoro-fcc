@@ -23,8 +23,17 @@ function PomodoroView(pomodoro) {
   this.shortBreakDurationSlider = Sliders.createShortBreakDurationSlider(this.pomodoro);
   this.longBreakDurationSlider = Sliders.createLongBreakDurationSlider(this.pomodoro);
 
-  const updateCountdownComponent = () =>
+  const descriptionElement = document.getElementById('pomodoroDescription')
+  const startDescription = descriptionElement.innerHTML;
+
+  const updateCountdownComponent = () => {
     this.countdownComponent.update(this.pomodoro);
+
+    descriptionElement.innerHTML =
+      pomodoro.isTaskActive() ? 'Focus on your task.' :
+      pomodoro.isBreakActive() ? 'Take a break.' :
+      startDescription;
+  }
 
   //  Update countdown display whenever task duration is changed
   this.taskDurationSlider.addModifiedEventListener(updateCountdownComponent);

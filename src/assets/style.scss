@@ -1,0 +1,122 @@
+$containerColor: #2F3335;
+$pageColor: darken($containerColor, 5%);
+$breakColor: #0B7DAC;
+$taskColor: #842925;
+$iconColor: #DDD;
+$iconHoverColor: #FFF;
+$textColor: white;
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: $pageColor;
+  color: $textColor;
+  height: 100%;
+}
+
+#countdown {
+  align-items: center;
+  border-radius: 1em;
+  color: $textColor;
+  display: flex;
+  font-size: 4em;
+  height: 2em;
+  justify-content: center;
+  margin: 1rem auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 6em;
+}
+
+#pomodoroDescription {
+  color: $textColor;
+}
+
+.button {
+  align-items: center;
+  background-color: $pageColor;
+  border: none;
+  border-radius: 50%;
+  color: $iconColor;
+  display: flex;
+  font-size: 2em;
+  height: 2em;
+  justify-content: center;
+  margin: auto;
+  outline:none;
+  padding: 0;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+  vertical-align: middle;
+  width: 2em;
+
+  &::-moz-focus-inner {
+    border: none;
+  }
+
+  &:active {
+    border: none;
+    outline:none;
+    padding: 0;
+  }
+
+  &:focus {
+    border: none;
+    outline:none;
+    padding: 0;
+  }
+
+  &:hover {
+    background-color: $containerColor;
+    border: none;
+    color: $iconHoverColor;
+    outline:none;
+    padding: 0;
+  }
+}
+
+div.slider  {
+  background-color: $containerColor;
+  border-radius: 1em;
+  color: $textColor;
+  height: 3em;
+  padding: 1em;
+  margin: 1em;
+}
+
+div.slider p {
+  padding: 0;
+  margin: 0;
+}
+
+div.slider span {
+  color: $textColor;
+  display: inline-block;
+  font-size: 2em;
+  margin: 0;
+  width: 2em;
+}
+
+#configContainer {
+  display: none;
+  margin: auto;
+  width: 21em;
+}
+
+#stopIcon {
+  display: none;
+}
+
+.inactive {
+  background-color: $containerColor;
+}
+
+.breakActive {
+  background-color: $breakColor;
+}
+
+.taskActive {
+  background-color: $taskColor;
+}
