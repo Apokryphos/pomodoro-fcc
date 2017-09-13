@@ -1,42 +1,46 @@
-function isCallback(callback) {
-  return (callback && typeof callback === 'function');
+//  @flow
+type EventCallback = () => void;
+
+type Event = {
+  name: string,
+  callbacks: Array<EventCallback>,
+};
+
+class EventHub {
+  events: Array<Event>;
+
+  constructor() {
+    this.events = [];
+  }
+
+  broadcast(eventName: string) {
+    const event = this.events.find(e => e.name === eventName);
+
+    if (!event) {
+      throw new Error(`Event ${eventName} is not registered.`);
+    }
+
+    event.callbacks.forEach(s => s());
+  }
+
+  registerEvent(eventName: string) {
+    const event: Event = {
+      name: eventName,
+      callbacks: [],
+    };
+
+    this.events.push(event);
+  }
+
+  subscribe(eventName: string, callback: EventCallback) {
+    const event = this.events.find(e => e.name === eventName);
+
+    if (!event) {
+      throw new Error(`Event ${eventName} is not registered.`);
+    }
+
+    event.callbacks.push(callback);
+  }
 }
-
-function EventHub() {
-  this.events = [];
-}
-
-EventHub.prototype.broadcast = function(eventName) {
-  const event = this.events.find(e => e.name === eventName);
-
-  if (!event) {
-    throw new Error(`Event ${eventName} is not registered.`);
-  }
-
-  event.subscribers.forEach(s => s());
-};
-
-EventHub.prototype.registerEvent = function(eventName) {
-  const event = {
-    name: eventName,
-    subscribers: [],
-  };
-
-  this.events.push(event);
-};
-
-EventHub.prototype.subscribe = function(eventName, callback) {
-  if (!isCallback(callback)) {
-    throw new Error(`Specified callback for ${eventName} subscriber is invalid.`);
-  }
-
-  const event = this.events.find(e => e.name === eventName);
-
-  if (!event) {
-    throw new Error(`Event ${eventName} is not registered.`);
-  }
-
-  event.subscribers.push(callback);
-};
 
 module.exports = EventHub;

@@ -1,8 +1,11 @@
+//  @flow
+const Pomodoro = require('./../pomodoro.js');
+
 function StartButton(
-  pomodoro,
-  buttonElement,
-  startIconElement,
-  stopIconElement) {
+  pomodoro: Pomodoro,
+  buttonElement: Element,
+  startIconElement: Element,
+  stopIconElement: Element) {
   this.pomodoro = pomodoro;
   this.buttonElement = buttonElement;
   this.startIconElement = startIconElement;

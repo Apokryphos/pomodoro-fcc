@@ -1,30 +1,35 @@
-function Slider(displayElement, inputElement) {
-  this.displayElement = displayElement;
-  this.inputElement = inputElement;
+//  @flow
+class Slider {
+  displayElement: HTMLElement;
+  inputElement: HTMLInputElement;
 
-  this.addModifiedEventListener(() => this.update());
+  constructor(displayElement: HTMLElement, inputElement: HTMLInputElement) {
+    this.displayElement = displayElement;
+    this.inputElement = inputElement;
+    this.addModifiedEventListener(() => this.update());
+  }
+
+  addModifiedEventListener(listener: Function) {
+    this.inputElement.addEventListener(
+      'change',
+      listener);
+
+    this.inputElement.addEventListener(
+      'input',
+      listener);
+  }
+
+  getValue() {
+    return parseInt(this.inputElement.value, 10);
+  }
+
+  setValue(value: number) {
+    this.inputElement.value = value.toString();
+  }
+
+  update() {
+    this.displayElement.innerHTML = this.getValue().toString();
+  }
 }
-
-Slider.prototype.addModifiedEventListener = function(listener) {
-  this.inputElement.addEventListener(
-    'change',
-    listener);
-
-  this.inputElement.addEventListener(
-    'input',
-    listener);
-};
-
-Slider.prototype.getValue = function() {
-  return parseInt(this.inputElement.value, 10);
-};
-
-Slider.prototype.setValue = function(value) {
-  this.inputElement.value = value;
-};
-
-Slider.prototype.update = function() {
-  this.displayElement.innerHTML = this.getValue();
-};
 
 module.exports = Slider;

@@ -1,10 +1,13 @@
+//  @flow
+const DomUtil = require('./dom-util.js');
+const Pomodoro = require('./../pomodoro.js');
 const Slider = require('./slider.js');
 const moment = require('moment');
 
-function createLongBreakIntervalSlider(pomodoro) {
+function createLongBreakIntervalSlider(pomodoro: Pomodoro) {
   const slider = new Slider(
-    document.getElementById('longBreakIntervalValue'),
-    document.getElementById('longBreakIntervalInput'));
+    DomUtil.getElementById('longBreakIntervalValue'),
+    DomUtil.getInputElementById('longBreakIntervalInput'));
 
   slider.setValue(pomodoro.longBreakInterval);
 
@@ -15,10 +18,10 @@ function createLongBreakIntervalSlider(pomodoro) {
   return slider;
 }
 
-function createLongBreakDurationSlider(pomodoro) {
+function createLongBreakDurationSlider(pomodoro: Pomodoro) {
   const slider = new Slider(
-    document.getElementById('longBreakDurationValue'),
-    document.getElementById('longBreakDurationInput'));
+    DomUtil.getElementById('longBreakDurationValue'),
+    DomUtil.getInputElementById('longBreakDurationInput'));
 
   slider.setValue(pomodoro.longBreakDuration.asMinutes());
 
@@ -31,10 +34,10 @@ function createLongBreakDurationSlider(pomodoro) {
   return slider;
 }
 
-function createShortBreakDurationSlider(pomodoro) {
+function createShortBreakDurationSlider(pomodoro: Pomodoro) {
   const slider = new Slider(
-    document.getElementById('shortBreakDurationValue'),
-    document.getElementById('shortBreakDurationInput'));
+    DomUtil.getElementById('shortBreakDurationValue'),
+    DomUtil.getInputElementById('shortBreakDurationInput'));
 
   slider.setValue(pomodoro.shortBreakDuration.asMinutes());
 
@@ -45,10 +48,10 @@ function createShortBreakDurationSlider(pomodoro) {
   return slider;
 }
 
-function createTaskDurationSlider(pomodoro) {
+function createTaskDurationSlider(pomodoro: Pomodoro) {
   const slider = new Slider(
-    document.getElementById('taskDurationValue'),
-    document.getElementById('taskDurationInput'));
+    DomUtil.getElementById('taskDurationValue'),
+    DomUtil.getInputElementById('taskDurationInput'));
 
   slider.setValue(pomodoro.taskDuration.asMinutes());
 

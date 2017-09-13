@@ -1,3 +1,4 @@
+//  @flow
 const Pomodoro = require('./pomodoro.js');
 const PomodoroView = require('./pomodoro-view/pomodoro-view.js');
 // const moment = require('moment');

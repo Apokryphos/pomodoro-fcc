@@ -1,22 +1,27 @@
-function ConfigButton(buttonElement, configContainer) {
-  this.buttonElement = buttonElement;
-  this.configContainer = configContainer;
+//  @flow
+class ConfigButton {
+  buttonElement: HTMLElement;
+  configContainer: HTMLElement;
 
-  this.addEventListener('click', () => this.activate());
-}
-
-ConfigButton.prototype.activate = function() {
-  if (this.configContainer.style.display === 'block') {
-    this.configContainer.style.display = 'none';
-    this.buttonElement.title = 'Edit settings...';
-  } else {
-    this.configContainer.style.display = 'block';
-    this.buttonElement.title = 'Hide settings...';
+  constructor(buttonElement: HTMLElement, configContainer: HTMLElement) {
+    this.buttonElement = buttonElement;
+    this.configContainer = configContainer;
+    this.addEventListener('click', () => this.activate());
   }
-};
 
-ConfigButton.prototype.addEventListener = function(type, listener) {
-  this.buttonElement.addEventListener(type, listener);
-};
+  activate() {
+    if (this.configContainer.style.display === 'block') {
+      this.configContainer.style.display = 'none';
+      this.buttonElement.title = 'Edit settings...';
+    } else {
+      this.configContainer.style.display = 'block';
+      this.buttonElement.title = 'Hide settings...';
+    }
+  }
+
+  addEventListener(type: string, listener: Function) {
+    this.buttonElement.addEventListener(type, listener);
+  }
+}
 
 module.exports = ConfigButton;
