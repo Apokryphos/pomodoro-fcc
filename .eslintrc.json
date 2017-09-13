@@ -2,7 +2,13 @@
   "env": {
     "browser": true
   },
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "flowtype"
+  ],
   "rules": {
     "func-names": ["error", "never"],
     "no-else-return": 0,
