@@ -23,7 +23,7 @@ function PomodoroView(pomodoro) {
   this.shortBreakDurationSlider = Sliders.createShortBreakDurationSlider(this.pomodoro);
   this.longBreakDurationSlider = Sliders.createLongBreakDurationSlider(this.pomodoro);
 
-  const descriptionElement = document.getElementById('pomodoroDescription')
+  const descriptionElement = document.getElementById('pomodoroDescription');
   const startDescription = descriptionElement.innerHTML;
 
   const updateCountdownComponent = () => {
@@ -31,14 +31,14 @@ function PomodoroView(pomodoro) {
 
     descriptionElement.innerHTML =
       pomodoro.isTaskActive() ? 'Focus on your task.' :
-      pomodoro.isBreakActive() ? 'Take a break.' :
-      startDescription;
-  }
+        pomodoro.isBreakActive() ? 'Take a break.' :
+          startDescription;
+  };
 
   //  Update countdown display whenever task duration is changed
   this.taskDurationSlider.addModifiedEventListener(updateCountdownComponent);
 
-    //  Update countdown display whenever start button is clicked
+  //  Update countdown display whenever start button is clicked
   this.startButtonComponent.addEventListener('click', updateCountdownComponent);
 
   //  Update countdown display every Pomodoro tick

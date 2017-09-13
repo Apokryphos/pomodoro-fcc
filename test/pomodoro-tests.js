@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const test = require('tape');
 const moment = require('moment');
 const Pomodoro = require('./../src/pomodoro.js');
@@ -7,48 +8,39 @@ test('Pomodoro construction', (t) => {
 
   t.doesNotThrow(() => {
     const pomodoro = new Pomodoro({
-      'taskDuration': moment.duration(30, 'minutes')
-    });
+      taskDuration: moment.duration(30, 'minutes') });
 
     t.deepEqual(pomodoro.taskDuration, moment.duration(30, 'minutes'));
   });
 
   t.doesNotThrow(() => {
     const pomodoro = new Pomodoro({
-      'longBreakDuration': moment.duration(20, 'minutes')
-    });
+      longBreakDuration: moment.duration(20, 'minutes') });
 
     t.deepEqual(pomodoro.longBreakDuration, moment.duration(20, 'minutes'));
   });
 
   t.doesNotThrow(() => {
     const pomodoro = new Pomodoro({
-      'shortBreakDuration': moment.duration(10, 'minutes')
-    });
+      shortBreakDuration: moment.duration(10, 'minutes') });
 
     t.deepEqual(pomodoro.shortBreakDuration, moment.duration(10, 'minutes'));
   });
 
   t.doesNotThrow(() => {
-    const pomodoro = new Pomodoro({
-      'longBreakInterval': 6
-    });
+    const pomodoro = new Pomodoro({ longBreakInterval: 6 });
 
     t.equal(pomodoro.longBreakInterval, 6);
   });
 
   t.doesNotThrow(() => {
-    const pomodoro = new Pomodoro({
-      'tickInterval': 500,
-    });
+    const pomodoro = new Pomodoro({ tickInterval: 500 });
 
     t.equal(pomodoro.tickInterval, 500);
   });
 
   t.doesNotThrow(() => {
-    const pomodoro = new Pomodoro({
-      'autoStart': false,
-    });
+    const pomodoro = new Pomodoro({ autoStart: false });
 
     t.equal(pomodoro.autoStart, false);
   });
@@ -57,19 +49,19 @@ test('Pomodoro construction', (t) => {
 });
 
 test('Pomodoro construction fails with invalid options', (t) => {
-  t.throws(() => new Pomodoro({ 'taskDuration': 25 }));
-  t.throws(() => new Pomodoro({ 'shortBreakDuration': 5 }));
-  t.throws(() => new Pomodoro({ 'longBreakDuration': 15 }));
-  t.throws(() => new Pomodoro({ 'tickInterval': 'one' }));
-  t.throws(() => new Pomodoro({ 'autoStart': 'no' }));
+  t.throws(() => new Pomodoro({ taskDuration: 25 }));
+  t.throws(() => new Pomodoro({ shortBreakDuration: 5 }));
+  t.throws(() => new Pomodoro({ longBreakDuration: 15 }));
+  t.throws(() => new Pomodoro({ tickInterval: 'one' }));
+  t.throws(() => new Pomodoro({ autoStart: 'no' }));
   t.end();
 });
 
 test('Pomodoro stop', (t) => {
   const options = {
-    'taskDuration': moment.duration(10, 'seconds'),
-    'shortBreakDuration': moment.duration(10, 'seconds'),
-    'longBreakDuration': moment.duration(10, 'econds'),
+    taskDuration: moment.duration(10, 'seconds'),
+    shortBreakDuration: moment.duration(10, 'seconds'),
+    longBreakDuration: moment.duration(10, 'seconds'),
   };
 
   const pomodoro = new Pomodoro(options);
@@ -85,10 +77,10 @@ test('Pomodoro stop', (t) => {
 
 test('Pomodoro state changes', (t) => {
   const options = {
-    'taskDuration': moment.duration(1, 'seconds'),
-    'shortBreakDuration': moment.duration(1, 'seconds'),
-    'longBreakDuration': moment.duration(1, 'econds'),
-    'autoStart': false,
+    taskDuration: moment.duration(1, 'seconds'),
+    shortBreakDuration: moment.duration(1, 'seconds'),
+    longBreakDuration: moment.duration(1, 'seconds'),
+    autoStart: false,
   };
 
   const pomodoro = new Pomodoro(options);
@@ -108,11 +100,11 @@ test('Pomodoro state changes', (t) => {
 
 test('Pomodoro break interval changes', (t) => {
   const options = {
-    'taskDuration': moment.duration(1, 'seconds'),
-    'shortBreakDuration': moment.duration(1, 'seconds'),
-    'longBreakDuration': moment.duration(2, 'econds'),
-    'longBreakInterval': 2,
-    'autoStart': false,
+    taskDuration: moment.duration(1, 'seconds'),
+    shortBreakDuration: moment.duration(1, 'seconds'),
+    longBreakDuration: moment.duration(2, 'seconds'),
+    longBreakInterval: 2,
+    autoStart: false,
   };
 
   const pomodoro = new Pomodoro(options);
@@ -144,12 +136,12 @@ test('Pomodoro break interval changes', (t) => {
       if (inLongBreak) {
         t.deepEqual(
           pomodoro.currentDuration,
-          pomodoro.longBreakDuration
+          pomodoro.longBreakDuration,
         );
       } else {
         t.deepEqual(
           pomodoro.currentDuration,
-          pomodoro.shortBreakDuration
+          pomodoro.shortBreakDuration,
         );
       }
     }
@@ -167,6 +159,15 @@ test('Pomodoro broadcasts onComplete event', (t) => {
   t.comment(`Estimated time: ${duration * count}ms`);
   t.timeoutAfter(duration * (count + 1));
 
+  const options = {
+    taskDuration: moment.duration(duration, 'milliseconds'),
+    shortBreakDuration: moment.duration(duration, 'milliseconds'),
+    longBreakDuration: moment.duration(duration, 'milliseconds'),
+    autoStart: false,
+  };
+
+  const pomodoro = new Pomodoro(options);
+
   let completeCount = 0;
   const onComplete = () => {
     ++completeCount;
@@ -174,20 +175,11 @@ test('Pomodoro broadcasts onComplete event', (t) => {
     if (completeCount >= count) {
       pomodoro.stop();
       t.end();
-    }
-    else {
+    } else {
       pomodoro.start(onComplete);
     }
   };
 
-  const options = {
-    'taskDuration': moment.duration(duration, 'milliseconds'),
-    'shortBreakDuration': moment.duration(duration, 'milliseconds'),
-    'longBreakDuration': moment.duration(duration, 'milliseconds'),
-    'autoStart': false,
-  };
-
-  const pomodoro = new Pomodoro(options);
   pomodoro.addEventListener('onComplete', onComplete);
   pomodoro.start();
 });
@@ -207,10 +199,10 @@ test('Pomodoro broadcasts onTick event', (t) => {
   };
 
   const options = {
-    'taskDuration': moment.duration(durationInSeconds, 'seconds'),
-    'shortBreakDuration': moment.duration(durationInSeconds, 'seconds'),
-    'longBreakDuration': moment.duration(durationInSeconds, 'seconds'),
-    'autoStart': false,
+    taskDuration: moment.duration(durationInSeconds, 'seconds'),
+    shortBreakDuration: moment.duration(durationInSeconds, 'seconds'),
+    longBreakDuration: moment.duration(durationInSeconds, 'seconds'),
+    autoStart: false,
   };
 
   const pomodoro = new Pomodoro(options);

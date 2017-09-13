@@ -8,14 +8,12 @@ const PomodoroState = {
 };
 
 function getBooleanOption(options, propertyName, defaultValue) {
-  if (options && options.hasOwnProperty(propertyName)) {
+  if (options && Object.prototype.hasOwnProperty.call(options, propertyName)) {
     const value = options[propertyName];
 
-    if (typeof value === 'boolean')
-    {
+    if (typeof value === 'boolean') {
       return value;
-    }
-    else {
+    } else {
       throw new Error(`Boolean option ${propertyName} is invalid.`);
     }
   }
@@ -32,8 +30,7 @@ function getDurationOption(options, propertyName, defaultValue) {
     const value = options[propertyName];
 
     if (value) {
-      if (moment.isDuration(value))
-      {
+      if (moment.isDuration(value)) {
         return value;
       } else {
         throw new Error(`Duration option ${propertyName} is invalid.`);
@@ -53,8 +50,7 @@ function getNumberOption(options, propertyName, defaultValue) {
     const value = options[propertyName];
 
     if (value) {
-      if (Number.isInteger(value))
-      {
+      if (Number.isInteger(value)) {
         return value;
       } else {
         throw new Error(`Number option ${propertyName} is invalid.`);
@@ -73,38 +69,32 @@ function Pomodoro(options) {
   this.taskDuration = getDurationOption(
     options,
     'taskDuration',
-    moment.duration(25, 'minutes')
-  );
+    moment.duration(25, 'minutes'));
 
   this.shortBreakDuration = getDurationOption(
     options,
     'shortBreakDuration',
-    moment.duration(5, 'minutes')
-  );
+    moment.duration(5, 'minutes'));
 
   this.longBreakDuration = getDurationOption(
     options,
     'longBreakDuration',
-    moment.duration(15, 'minutes')
-  );
+    moment.duration(15, 'minutes'));
 
   this.longBreakInterval = getNumberOption(
     options,
     'longBreakInterval',
-    4
-  );
+    4);
 
   this.tickInterval = getNumberOption(
     options,
     'tickInterval',
-    1000
-  );
+    1000);
 
   this.autoStart = getBooleanOption(
     options,
     'autoStart',
-    true
-  );
+    true);
 
   //  Completed tasks
   this.taskCount = 0;
@@ -121,7 +111,7 @@ function Pomodoro(options) {
   this.eventHub = new EventHub();
   this.eventHub.registerEvent('onComplete');
   this.eventHub.registerEvent('onTick');
-};
+}
 
 Pomodoro.prototype.addEventListener = function(eventName, callback) {
   this.eventHub.subscribe(eventName, callback);
@@ -162,8 +152,8 @@ Pomodoro.prototype.isTaskActive = function() {
 Pomodoro.prototype.getBreakDuration = function() {
   return (
     (this.taskCount > 0 && (this.taskCount % this.longBreakInterval) === 0) ?
-    this.longBreakDuration :
-    this.shortBreakDuration);
+      this.longBreakDuration :
+      this.shortBreakDuration);
 };
 
 Pomodoro.prototype.start = function() {

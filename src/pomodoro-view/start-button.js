@@ -1,8 +1,8 @@
 function StartButton(
-    pomodoro,
-    buttonElement,
-    startIconElement,
-    stopIconElement) {
+  pomodoro,
+  buttonElement,
+  startIconElement,
+  stopIconElement) {
   this.pomodoro = pomodoro;
   this.buttonElement = buttonElement;
   this.startIconElement = startIconElement;
@@ -23,10 +23,10 @@ StartButton.prototype.activate = function() {
     this.startIconElement.style.display = 'none';
     this.stopIconElement.style.display = 'inline';
   }
-}
+};
 
 StartButton.prototype.addEventListener = function(type, listener) {
   this.buttonElement.addEventListener(type, listener);
-}
+};
 
 module.exports = StartButton;

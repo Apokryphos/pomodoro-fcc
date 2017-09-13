@@ -1,5 +1,5 @@
 function isCallback(callback) {
-  return (callback && typeof callback == "function");
+  return (callback && typeof callback === 'function');
 }
 
 function EventHub() {
@@ -14,16 +14,16 @@ EventHub.prototype.broadcast = function(eventName) {
   }
 
   event.subscribers.forEach(s => s());
-}
+};
 
 EventHub.prototype.registerEvent = function(eventName) {
   const event = {
-    'name': eventName,
-    'subscribers': [],
+    name: eventName,
+    subscribers: [],
   };
 
   this.events.push(event);
-}
+};
 
 EventHub.prototype.subscribe = function(eventName, callback) {
   if (!isCallback(callback)) {
@@ -37,6 +37,6 @@ EventHub.prototype.subscribe = function(eventName, callback) {
   }
 
   event.subscribers.push(callback);
-}
+};
 
 module.exports = EventHub;

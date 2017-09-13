@@ -17,8 +17,8 @@ function getPomodoroCountdownString(pomodoro) {
   //  Only show hours if non-zero
   const hoursStr =
     duration.hours() === 0 ?
-    '' :
-    `${duration.hours() < 10 ? '0' : ''}${duration.hours()}:`;
+      '' :
+      `${duration.hours() < 10 ? '0' : ''}${duration.hours()}:`;
 
   return `${hoursStr}${str}`;
 }
@@ -43,6 +43,6 @@ Countdown.prototype.update = function(pomodoro) {
     this.element.classList.remove('taskActive');
     this.element.classList.remove('breakActive');
   }
-}
+};
 
 module.exports = Countdown;

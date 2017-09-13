@@ -8,8 +8,9 @@ function createLongBreakIntervalSlider(pomodoro) {
 
   slider.setValue(pomodoro.longBreakInterval);
 
-  slider.addModifiedEventListener(() =>
-    pomodoro.longBreakInterval = slider.getValue());
+  slider.addModifiedEventListener(() => {
+    pomodoro.longBreakInterval = slider.getValue();
+  });
 
   return slider;
 }
@@ -23,8 +24,8 @@ function createLongBreakDurationSlider(pomodoro) {
 
   slider.addModifiedEventListener(() => {
     pomodoro.longBreakDuration = moment.duration(slider.getValue(), 'minutes');
-    console.log(pomodoro.longBreakDuration.asMinutes());
-    console.log(pomodoro.longBreakDuration.asMinutes());
+    // console.log(pomodoro.longBreakDuration.asMinutes());
+    // console.log(pomodoro.longBreakDuration.asMinutes());
   });
 
   return slider;
@@ -37,8 +38,9 @@ function createShortBreakDurationSlider(pomodoro) {
 
   slider.setValue(pomodoro.shortBreakDuration.asMinutes());
 
-  slider.addModifiedEventListener(() =>
-    pomodoro.shortBreakDuration = moment.duration(slider.getValue(), 'minutes'));
+  slider.addModifiedEventListener(() => {
+    pomodoro.shortBreakDuration = moment.duration(slider.getValue(), 'minutes');
+  });
 
   return slider;
 }
@@ -50,8 +52,9 @@ function createTaskDurationSlider(pomodoro) {
 
   slider.setValue(pomodoro.taskDuration.asMinutes());
 
-  slider.addModifiedEventListener(() =>
-    pomodoro.taskDuration = moment.duration(slider.getValue(), 'minutes'));
+  slider.addModifiedEventListener(() => {
+    pomodoro.taskDuration = moment.duration(slider.getValue(), 'minutes');
+  });
 
   return slider;
 }

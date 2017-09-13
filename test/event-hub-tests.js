@@ -1,5 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const test = require('tape');
-const moment = require('moment');
 const EventHub = require('./../src/event-hub.js');
 
 test('EventHub construction', (t) => {

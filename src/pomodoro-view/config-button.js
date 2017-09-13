@@ -13,10 +13,10 @@ ConfigButton.prototype.activate = function() {
     this.configContainer.style.display = 'block';
     this.buttonElement.title = 'Hide settings...';
   }
-}
+};
 
 ConfigButton.prototype.addEventListener = function(type, listener) {
   this.buttonElement.addEventListener(type, listener);
-}
+};
 
 module.exports = ConfigButton;

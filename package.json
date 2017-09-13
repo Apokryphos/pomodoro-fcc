@@ -5,13 +5,18 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "test": "tape test/tests.js | faucet"
+    "test": "eslint src; tape test/tests.js | faucet"
   },
   "author": "Tony Slavotinek",
   "license": "ISC",
   "devDependencies": {
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.5",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "faucet": "0.0.1",
     "node-sass": "^4.5.3",
