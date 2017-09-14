@@ -19,6 +19,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-tape-runner": "^2.0.1",
     "clean-webpack-plugin": "^0.1.16",
+    "compression-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.5",
     "eslint": "^4.6.1",
