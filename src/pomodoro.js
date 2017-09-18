@@ -113,7 +113,11 @@ class Pomodoro {
       const duration = this.currentDuration.asMilliseconds();
 
       //  duration.subtract() mutates...
-      const remaining = duration - elapsed;
+      let remaining = duration - elapsed;
+
+      if (remaining < 0) {
+        remaining = 0;
+      }
 
       return moment.duration(remaining);
     } else {
