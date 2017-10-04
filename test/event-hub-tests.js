@@ -1,6 +1,6 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const test = require('tape');
-const EventHub = require('./../src/event-hub.js');
+const EventHub = require('./../src/js/event-hub.js');
 
 test('EventHub construction', (t) => {
   t.doesNotThrow(() => new EventHub());

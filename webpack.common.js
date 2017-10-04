@@ -1,16 +1,12 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: [
-    './src/index.js',
-    './src/assets/style.scss',
-  ],
+  entry: ['./src/js/index.js', './src/stylesheets/style.scss'],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -19,23 +15,10 @@ module.exports = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      }
-    ]
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new CopyWebpackPlugin([
-      { from: 'src/assets/*.html', flatten: true },
-    ]),
-    new ExtractTextPlugin({
-      filename: 'style.css',
-      allChunks: true,
-    })
-  ]
-}
+    new CopyWebpackPlugin([{ from: 'src/html/index.html', flatten: true }]),
+  ],
+};

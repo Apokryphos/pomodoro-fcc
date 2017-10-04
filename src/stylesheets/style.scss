@@ -8,12 +8,33 @@ $textColor: white;
 
 html {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 body {
   background-color: $pageColor;
   color: $textColor;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+#root-container {
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+}
+
+#pomodoro-container {
+  position: relative;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 #countdown {
@@ -40,7 +61,7 @@ body {
   border: none;
   border-radius: 50%;
   color: $iconColor;
-  display: flex;
+  display: inline-flex;
   font-size: 2em;
   height: 2em;
   justify-content: center;

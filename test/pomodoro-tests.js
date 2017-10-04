@@ -2,7 +2,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const test = require('tape');
 const moment = require('moment');
-const Pomodoro = require('./../src/pomodoro.js');
+const Pomodoro = require('./../src/js/pomodoro.js');
 
 test('Pomodoro construction', (t) => {
   t.doesNotThrow(() => new Pomodoro());
