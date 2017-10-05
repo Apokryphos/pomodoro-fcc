@@ -14,13 +14,24 @@ class EventHub {
   }
 
   broadcast(eventName: string) {
-    const event = this.events.find(e => e.name === eventName);
+    // const event = this.events.find(e => e.name === eventName);
+    const event = this._getEventByName(eventName);
 
     if (!event) {
       throw new Error(`Event ${eventName} is not registered.`);
     }
 
     event.callbacks.forEach(s => s());
+  }
+
+  _getEventByName(eventName: string) {
+    for (let e = 0; e < this.events.length; ++e) {
+      if (this.events[e].name === eventName) {
+        return this.events[e];
+      }
+    }
+
+    return undefined;
   }
 
   registerEvent(eventName: string) {
@@ -33,7 +44,8 @@ class EventHub {
   }
 
   subscribe(eventName: string, callback: EventCallback) {
-    const event = this.events.find(e => e.name === eventName);
+    // const event = this.events.find(e => e.name === eventName);
+    const event = this._getEventByName(eventName);
 
     if (!event) {
       throw new Error(`Event ${eventName} is not registered.`);
