@@ -1,3 +1,5 @@
 # Pomodoro Timer
 
-A pomodoro timer for a freeCodeCamp project.
+A pomodoro timer web app.
+
+![screenshot](/screenshot.png?raw=true)
